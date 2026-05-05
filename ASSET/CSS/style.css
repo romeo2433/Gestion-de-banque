@@ -1,0 +1,38 @@
+body {
+    color: #fff;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.card h2 {
+    color: #333;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #72a9ab;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #2575fc;
+}
+input{
+    cursor: pointer;
+}
+.lien{
+    text-decoration: none;
+}
+.login-form{
+    text-decoration: none;
+}
