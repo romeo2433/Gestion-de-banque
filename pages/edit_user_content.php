@@ -1,3 +1,4 @@
+<div class="form-card">
 <h2 class="mb-4">Modifier un utilisateur</h2>
 
 <?php if (!empty($errors)): ?>
@@ -46,3 +47,4 @@
     <a href="utilisateur.php" class="btn btn-secondary">Retour</a>
 
 </form>
+</div>

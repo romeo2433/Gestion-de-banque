@@ -1,0 +1,136 @@
+/* ===== SIDEBAR ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar{
+    width:270px;
+    height:200vh;
+    background: linear-gradient(180deg, #0f172a, #1e293b);
+    position:fixed;
+    left:0;
+    top:0;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo h2{
+    color:white;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+/* USER */
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background: rgba(255,255,255,0.05);
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:35px;
+}
+
+.user-avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.user-info h4{
+    color:white;
+    font-size:16px;
+}
+
+.user-info span{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* MENU */
+
+.menu{
+    list-style:none;
+    flex:1;
+}
+
+.menu li{
+    margin-bottom:10px;
+}
+
+.menu li a{
+    text-decoration:none;
+    color:#cbd5e1;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:0.3s;
+    font-size:15px;
+}
+
+.menu li a i{
+    font-size:18px;
+    width:25px;
+}
+
+/* HOVER */
+
+.menu li a:hover{
+    background:#2563eb;
+    color:white;
+    transform:translateX(5px);
+}
+
+/* ACTIVE */
+
+.menu li a.active{
+    background:#2563eb;
+    color:white;
+    box-shadow:0 5px 15px rgba(37,99,235,0.4);
+}
+
+/* LOGOUT */
+
+.logout{
+    margin-top:20px;
+}
+
+.logout a{
+    text-decoration:none;
+    color:#f87171;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:0.3s;
+}
+
+.logout a:hover{
+    background:rgba(248,113,113,0.1);
+}

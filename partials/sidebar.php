@@ -1,77 +1,77 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">IGOR PRO</span>
-    </a>
+<aside class="sidebar">
 
-    <div class="sidebar">
-
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="info">
-                <a href="#" class="d-block">
-                    Bienvenue, <?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>
-                </a>
-            </div>
-        </div>
-
-        <nav>
-            <ul class="nav nav-pills nav-sidebar flex-column">
-
-                <li class="nav-item">
-                    <a href="dashboard.php" class="nav-link">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <p>Tableau de bord</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="utilisateur.php" class="nav-link">
-                        <i class="fa fa-user"></i>
-                        <p>Clients</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="demande.php" class="nav-link">
-                        <i class="fa fa-credit-card"></i>
-                        <p>Demandes de prêt</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="planification.php" class="nav-link">
-                        <i class="fas fa-chart-pie"></i>
-                        <p>Échéanciers</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="remboursement.php" class="nav-link">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <p>Remboursement</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="historique.php" class="nav-link">
-                        <i class="fas fa-history"></i>
-                        <p>Historique</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="Agents Bancaires.php" class="nav-link">
-                        <i class="fas fa-user-shield"></i>
-                        <p>Agents Bancaires</p>
-                    </a>
-                </li>                
-
-                <li class="nav-item">
-                    <a href="logout.php" class="nav-link" onclick="return confirm('Déconnexion ?')">
-                        <i class="fa fa-power-off"></i>
-                        <p>Déconnexion</p>
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
+    <!-- Logo -->
+    <div class="logo">
+        <h2>🏦 IGOR PRO</h2>
     </div>
+
+    <!-- Profil utilisateur -->
+    <div class="user-card">
+        <div class="user-avatar">
+            <?php echo strtoupper(substr($_SESSION['username'] ?? 'U', 0, 1)); ?>
+        </div>
+        <div class="user-info">
+            <h4><?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?></h4>
+            <span>Administrateur</span>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <?php
+    $current_page = basename($_SERVER['PHP_SELF']);
+    ?>
+
+    <ul class="nav-menu">
+        <li class="nav-item">
+            <a href="dashboard.php" class="nav-link <?= ($current_page == 'dashboard.php') ? 'active' : '' ?>">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="utilisateur.php" class="nav-link <?= ($current_page == 'utilisateur.php') ? 'active' : '' ?>">
+                <i class="fas fa-users"></i>
+                <span>Clients</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="demande.php" class="nav-link <?= ($current_page == 'demande.php') ? 'active' : '' ?>">
+                <i class="fas fa-hand-holding-usd"></i>
+                <span>Demandes de prêt</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="planification.php" class="nav-link <?= ($current_page == 'planification.php') ? 'active' : '' ?>">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Échéanciers</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="remboursement.php" class="nav-link <?= ($current_page == 'remboursement.php') ? 'active' : '' ?>">
+                <i class="fas fa-wallet"></i>
+                <span>Remboursements</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="historique.php" class="nav-link <?= ($current_page == 'historique.php') ? 'active' : '' ?>">
+                <i class="fas fa-history"></i>
+                <span>Historique</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="Agents Bancaires.php" class="nav-link <?= ($current_page == 'Agents Bancaires.php') ? 'active' : '' ?>">
+                <i class="fas fa-user-shield"></i>
+                <span>Agents Bancaires</span>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Déconnexion -->
+    <div class="logout-btn">
+        <a href="logout.php" class="logout-link" onclick="return confirm('Déconnexion ?')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Déconnexion</span>
+        </a>
+    </div>
+
 </aside>
