@@ -212,12 +212,27 @@ try {
 
         <!-- Statistiques -->
         <div class="row mb-4">
-            <div class="col-md-4">
-                <div class="stat-card">
-                    <p class="stat-value"><?php echo count($prets); ?></p>
-                    <p class="stat-label">Demandes de prêt</p>
-                </div>
-            </div>
+        <div class="col-md-4">
+    <div class="stat-card">
+
+        <p class="stat-value">
+            <?php echo count($prets); ?>
+        </p>
+
+        <p class="stat-label">
+            Demandes de prêt
+        </p>
+
+        <a href="client/nouvelle_demande.php"
+           class="btn btn-light mt-3">
+
+            <i class="fas fa-plus"></i>
+            Nouvelle demande
+
+        </a>
+
+    </div>
+</div>
             <div class="col-md-4">
                 <div class="stat-card" style="background: linear-gradient(135deg, var(--success-color), #17a673);">
                     <p class="stat-value"><?php echo count($remboursements); ?></p>
