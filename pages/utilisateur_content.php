@@ -288,7 +288,6 @@
                     <th>ID</th>
                     <th>Nom complet</th>
                     <th>Email</th>
-                    <th>Role</th>
                     <th>Agence</th>
                 </tr>
             </thead>
@@ -313,10 +312,6 @@
 
                             <td>
                                 <?= htmlspecialchars($user['email']) ?>
-                            </td>
-
-                            <td>
-                                <?= htmlspecialchars($user['role']) ?>
                             </td>
 
                             <td>
