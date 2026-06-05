@@ -28,6 +28,10 @@ try {
     }
 
     $remboursements = $stmt->fetchAll();
+    //echo "<pre>";
+//print_r($remboursements);
+//echo "</pre>";
+//exit;
 
 } catch (Exception $e) {
     $remboursements = [];
