@@ -319,7 +319,7 @@ function verifyOTP($email, $otp_entered) {
                     <div class="card-header">
                         <?php if (isset($_SESSION['selected_role']) && $_SESSION['selected_role'] == 'super_admin'): ?>
                             <i class="fas fa-crown"></i>
-                            <h2>IGOR PRO</h2>
+                            <h2>IGOR PRO TEST</h2>
                             <div class="role-badge">
                                 <i class="fas fa-shield-alt"></i> Connexion Super Admin
                             </div>
