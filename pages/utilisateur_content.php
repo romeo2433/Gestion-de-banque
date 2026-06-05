@@ -68,7 +68,7 @@
 
         <span class="stats-badge bg-primary" style="margin-left:12px;">
             <i class="fas fa-chart-bar"></i>
-            Total : <?= count($utilisateurs ?? []) ?>
+            Total : <?= count($clients ?? []) ?>
         </span>
     </h3>
 
@@ -98,6 +98,7 @@
                 <th>ID</th>
                 <th>Nom complet</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Agence</th>
                 <th style="text-align:center;">Actions</th>
             </tr>
@@ -105,10 +106,9 @@
 
         <tbody>
 
-            <?php if(isset($utilisateurs) && !empty($utilisateurs)): ?>
+            <?php if(isset($clients) && !empty($clients)): ?>
 
-                <?php foreach($utilisateurs as $user): ?>
-
+            <?php foreach($clients as $user): ?>
                     <tr>
 
                         <!-- ID -->
@@ -146,6 +146,16 @@
                                 <i class="fas fa-envelope"></i>
 
                                 <?= htmlspecialchars($user['email']) ?>
+
+                            </a>
+
+                        </td>
+                        <td>
+
+                            <a href="mailto:<?= htmlspecialchars($user['role']) ?>"
+                               class="table-link">
+
+                                <?= htmlspecialchars($user['role']) ?>
 
                             </a>
 
@@ -253,8 +263,82 @@
 
 </div>
 
-</div>y
+</div>
+<div class="table-wrapper" style="margin-top:30px;">
 
+    <div class="table-header">
+
+        <h3 class="table-title">
+            <i class="fas fa-user-shield"></i>
+            Liste des Super Administrateurs
+
+            <span class="stats-badge bg-primary" style="margin-left:12px;">
+                Total : <?= count($superAdmins ?? []) ?>
+            </span>
+        </h3>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="modern-table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom complet</th>
+                    <th>Email</th>
+                    <th>Agence</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <?php if(isset($superAdmins) && !empty($superAdmins)): ?>
+
+                    <?php foreach($superAdmins as $user): ?>
+
+                        <tr>
+
+                            <td>
+                                <span class="badge-id">
+                                    #<?= $user['id'] ?>
+                                </span>
+                            </td>
+
+                            <td>
+                                <?= htmlspecialchars($user['nom'].' '.($user['prenom'] ?? '')) ?>
+                            </td>
+
+                            <td>
+                                <?= htmlspecialchars($user['email']) ?>
+                            </td>
+
+                            <td>
+                                <?= htmlspecialchars($user['agence_nom'] ?? 'Non assigné') ?>
+                            </td>
+
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            Aucun super administrateur trouvé
+                        </td>
+                    </tr>
+
+                <?php endif; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 </div>
 
 <!-- Modal de confirmation -->
