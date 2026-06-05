@@ -128,9 +128,9 @@
                                 </div>
 
                                 <div>
-                                    <strong>
-                                        <?= htmlspecialchars($user['nom'] . ' ' . ($user['prenom'] ?? '')) ?>
-                                    </strong>
+                                <strong>
+                                    <?= htmlspecialchars($user['username']) ?>
+                                </strong>
                                 </div>
 
                             </div>

@@ -58,14 +58,68 @@
                 <?php foreach ($demandes as $d): ?>
                 <tr>
                     <td><?php echo $d['id']; ?></td>
-                    <td><?php echo $d['nom'] . ' ' . $d['prenom']; ?></td>
+                    <td> <?php echo $d['client_nom']; ?></td>
                     <td><?php echo number_format($d['montant']); ?> Ar</td>
-                    <td><?php echo $d['statut']; ?></td>
-                    <td><?php echo $d['date_demande']; ?></td>
                     <td>
-                        <a href="editdemande.php?id=<?php echo $d['id']; ?>" class="btn btn-warning btn-sm">✏️</a>
-                        <a href="deletedemande.php?id=<?php echo $d['id']; ?>" class="btn btn-danger btn-sm">🗑️</a>
-                    </td>
+
+                        <?php if ($d['statut'] == 'approuvé'): ?>
+
+                            <span class="badge bg-success">
+                                Approuvé
+                            </span>
+
+                        <?php elseif ($d['statut'] == 'refusé'): ?>
+
+                            <span class="badge bg-danger">
+                                Refusé
+                            </span>
+
+                        <?php else: ?>
+
+                            <span class="badge bg-warning text-dark">
+                                En attente
+                            </span>
+
+                        <?php endif; ?>
+
+                        </td>
+                                            <td><?php echo $d['date_demande']; ?></td>
+                                            <td>
+
+                        
+
+                            <!-- Validation rapide -->
+                            <form method="POST" style="display:inline;">
+
+                                <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
+
+                                <button type="submit"
+                                        name="statut"
+                                        value="approuvé"
+                                        class="btn btn-success btn-sm">
+                                    ✔ Valider
+                                </button>
+
+                                <button type="submit"
+                                        name="statut"
+                                        value="refusé"
+                                        class="btn btn-secondary btn-sm">
+                                    ✖ Refuser
+                                </button>
+
+                            </form>
+                            <!-- Modifier -->
+                            <a href="editdemande.php?id=<?php echo $d['id']; ?>"
+                            class="btn btn-warning btn-sm">
+                            ✏️
+                            </a>
+                            <!-- Supprimer 
+                            <a href="deletedemande.php?id=<?php echo $d['id']; ?>"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Supprimer cette demande ?')">
+                            🗑️
+                            </a>-->
+                        </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
