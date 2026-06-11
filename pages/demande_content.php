@@ -83,42 +83,42 @@
                         <?php endif; ?>
 
                         </td>
-                                            <td><?php echo $d['date_demande']; ?></td>
-                                            <td>
+                        <td><?php echo $d['date_demande']; ?></td>
+                        <td>
+                            <?php if ($d['statut'] == 'en attente'): ?>
 
-                        
+                                <form method="POST" style="display:inline;">
 
-                            <!-- Validation rapide -->
-                            <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?= $d['id']; ?>">
 
-                                <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
+                                    <button type="submit"
+                                            name="statut"
+                                            value="approuvé"
+                                            class="btn btn-success btn-sm">
+                                        ✔ Valider
+                                    </button>
 
-                                <button type="submit"
-                                        name="statut"
-                                        value="approuvé"
-                                        class="btn btn-success btn-sm">
-                                    ✔ Valider
-                                </button>
+                                    <button type="submit"
+                                            name="statut"
+                                            value="refusé"
+                                            class="btn btn-secondary btn-sm">
+                                        ✖ Refuser
+                                    </button>
 
-                                <button type="submit"
-                                        name="statut"
-                                        value="refusé"
-                                        class="btn btn-secondary btn-sm">
-                                    ✖ Refuser
-                                </button>
+                                </form>
 
-                            </form>
-                            <!-- Modifier -->
-                            <a href="editdemande.php?id=<?php echo $d['id']; ?>"
-                            class="btn btn-warning btn-sm">
-                            ✏️
-                            </a>
-                            <!-- Supprimer 
-                            <a href="deletedemande.php?id=<?php echo $d['id']; ?>"
-                            class="btn btn-danger btn-sm"
-                            onclick="return confirm('Supprimer cette demande ?')">
-                            🗑️
-                            </a>-->
+                                <a href="editdemande.php?id=<?= $d['id']; ?>"
+                                class="btn btn-warning btn-sm">
+                                ✏️
+                                </a>
+
+                            <?php else: ?>
+
+                                <span class="text-muted">
+                                    Action terminée
+                                </span>
+
+                            <?php endif; ?>
                         </td>
                 </tr>
                 <?php endforeach; ?>

@@ -301,6 +301,19 @@ try {
                                         </span>
                                     </td>
                                     <td><?php echo date('d/m/Y', strtotime($pret['date_demande'])); ?></td>
+                                    <td>
+        <a href="detaildemande.php?id=<?= $pret['id'] ?>"
+           class="btn btn-info btn-sm">
+           👁️
+        </a>
+
+        <?php if ($pret['statut'] == 'en attente'): ?>
+        <a href="datedemande.php?id=<?= $pret['id'] ?>"
+           class="btn btn-warning btn-sm">
+           ✏️
+        </a>
+        <?php endif; ?>
+    </td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

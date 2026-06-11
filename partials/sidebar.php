@@ -35,9 +35,16 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="pret_admin.php"
+            class="nav-link <?= ($current_page == 'pret_admin.php') ? 'active' : '' ?>">
+                <i class="fas fa-hand-holding-usd"></i>
+                <span>Création Prêt</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="demande.php" class="nav-link <?= ($current_page == 'demande.php') ? 'active' : '' ?>">
                 <i class="fas fa-hand-holding-usd"></i>
-                <span>Demandes de prêt</span>
+                <span>Listes des demandes de prêt</span>
             </a>
         </li>
         <li class="nav-item">
