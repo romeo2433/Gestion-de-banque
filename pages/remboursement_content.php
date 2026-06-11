@@ -66,7 +66,7 @@ $badge = match($remb['statut']) {
     </td>
 
     <td>
-        <?= date('d/m/Y H:i', strtotime($remb['date_remboursement'])) ?>
+        <?= date('d/m/Y', strtotime($remb['date_remboursement'])) ?>
     </td>
 
     <td>

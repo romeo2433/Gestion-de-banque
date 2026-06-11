@@ -43,10 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
         
             // Récupérer les informations de la demande
             $sqlDemande = "
-                SELECT utilisateur_id, montant
-                FROM demande_pret
-                WHERE id = :id
-            ";
+            SELECT utilisateur_id,
+                   montant,
+                   type_pret,
+                   motif,
+                   duree
+            FROM demande_pret
+            WHERE id = :id
+        ";
         
             $stmtDemande = $conn->prepare($sqlDemande);
             $stmtDemande->execute(['id' => $id]);
@@ -69,17 +73,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
                 ]);
         
                 if ($check->fetchColumn() == 0) {
-        
+
+                    // Création du remboursement
                     $insert = $conn->prepare("
                         INSERT INTO remboursement
                         (utilisateur_id, montant, date_remboursement, statut)
                         VALUES
                         (:utilisateur_id, :montant, CURDATE(), 'en attente')
                     ");
-        
+                
                     $insert->execute([
                         'utilisateur_id' => $demande['utilisateur_id'],
                         'montant' => $demande['montant']
+                    ]);
+                
+                    // Création de la planification
+                    $dateDebut = date('Y-m-d');
+                    $dateFin = date('Y-m-d', strtotime("+{$demande['duree']} months"));
+                
+                    $insertPlanification = $conn->prepare("
+                        INSERT INTO planification
+                        (
+                            titre,
+                            description,
+                            date_debut,
+                            date_fin,
+                            statut
+                        )
+                        VALUES
+                        (
+                            :titre,
+                            :description,
+                            :date_debut,
+                            :date_fin,
+                            'en cours'
+                        )
+                    ");
+                
+                    $insertPlanification->execute([
+                        'titre' => $demande['type_pret'],
+                        'description' => $demande['motif'],
+                        'date_debut' => $dateDebut,
+                        'date_fin' => $dateFin
                     ]);
                 }
             }
