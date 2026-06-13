@@ -44,7 +44,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IGOR PRO | Espace Client</title>
+    <title>BNI BANQUE | Espace Client</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -180,7 +180,7 @@ try {
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-university me-2"></i>IGOR PRO
+                <i class="fas fa-university me-2"></i>BANQUE NATIONAL 
             </a>
             <div class="d-flex align-items-center">
                 <span class="navbar-text">
@@ -228,7 +228,9 @@ try {
 
             <i class="fas fa-plus"></i>
             Nouvelle demande
-
+        </a>
+        <a href="statistiques.php" class="btn btn-info">
+            Voir mes statistiques
         </a>
 
     </div>
@@ -302,13 +304,13 @@ try {
                                     </td>
                                     <td><?php echo date('d/m/Y', strtotime($pret['date_demande'])); ?></td>
                                     <td>
-        <a href="detaildemande.php?id=<?= $pret['id'] ?>"
+        <a href="client/detaildemande.php?id=<?= $pret['id'] ?>"
            class="btn btn-info btn-sm">
            👁️
         </a>
 
         <?php if ($pret['statut'] == 'en attente'): ?>
-        <a href="datedemande.php?id=<?= $pret['id'] ?>"
+        <a href="client/datedemande.php?id=<?= $pret['id'] ?>"
            class="btn btn-warning btn-sm">
            ✏️
         </a>
@@ -365,6 +367,12 @@ try {
                                             <?php echo ucfirst($remb['statut']); ?>
                                         </span>
                                     </td>
+                                    <td>
+    <a href="detailremboursement.php?id=<?= $remb['id'] ?>"
+       class="btn btn-info btn-sm">
+       👁️ Détails
+    </a>
+</td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
