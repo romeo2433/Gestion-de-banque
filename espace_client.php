@@ -229,7 +229,7 @@ try {
             <i class="fas fa-plus"></i>
             Nouvelle demande
         </a>
-        <a href="statistiques.php" class="btn btn-info">
+        <a href="client/statistiques.php" class="btn btn-info">
             Voir mes statistiques
         </a>
 
@@ -368,7 +368,7 @@ try {
                                         </span>
                                     </td>
                                     <td>
-    <a href="detailremboursement.php?id=<?= $remb['id'] ?>"
+    <a href="client/detailremboursement.php?id=<?= $remb['id'] ?>"
        class="btn btn-info btn-sm">
        👁️ Détails
     </a>
