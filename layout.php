@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>IGOR PRO</title>
+    <title>BNI BANQUE</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="./ASSET/CSS/plugins/fontawesome-free/css/all.min.css">
@@ -47,7 +47,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- FOOTER -->
     <footer class="main-footer text-center">
-        <strong>&copy; <?php echo date('Y'); ?> IGOR PRO</strong>
+        <strong>&copy; <?php echo date('Y'); ?> BNI BANQUE</strong>
     </footer>
 
 </div>
