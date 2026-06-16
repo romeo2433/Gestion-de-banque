@@ -87,8 +87,8 @@
                 <table class="table table-hover align-middle">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Titre</th>
+                            <th>Utilisateur</th>
                             <th>Description</th>
                             <th>Date début</th>
                             <th>Date fin</th>
@@ -118,8 +118,10 @@
                             }
                             ?>
                             <tr>
-                                <td><span class="badge bg-secondary">#<?= $plan['id'] ?></span></td>
                                 <td><strong><?= htmlspecialchars($plan['titre']) ?></strong></td>
+                                <td>
+    <?= htmlspecialchars($plan['username'] ?? 'Utilisateur inconnu'); ?>
+</td>
                                 <td class="description-cell" title="<?= htmlspecialchars($plan['description'] ?? '') ?>">
                                     <?= htmlspecialchars($plan['description'] ?? '-') ?>
                                 </td>

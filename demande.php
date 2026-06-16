@@ -20,23 +20,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 
     $id = intval($_POST['id']);
     $statut = $_POST['statut'];
+    $motif_refus = $_POST['motif_refus'] ?? null;
 
     $statuts_valides = ['approuvé', 'refusé'];
 
-    if (in_array($statut, $statuts_valides)) {
+    if ($statut == 'refusé') {
 
+        $sqlUpdate = "
+            UPDATE demande_pret
+            SET statut = :statut,
+                motif_refus = :motif_refus
+            WHERE id = :id
+        ";
+    
+        $stmtUpdate = $conn->prepare($sqlUpdate);
+    
+        $stmtUpdate->execute([
+            'statut' => $statut,
+            'motif_refus' => $motif_refus,
+            'id' => $id
+        ]);
+    
+    } else {
+    
         $sqlUpdate = "
             UPDATE demande_pret
             SET statut = :statut
             WHERE id = :id
         ";
-
+    
         $stmtUpdate = $conn->prepare($sqlUpdate);
-
+    
         $stmtUpdate->execute([
             'statut' => $statut,
             'id' => $id
         ]);
+    }
         
         // Si la demande est approuvée, créer un remboursement
         if ($statut == 'approuvé') {
@@ -94,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
                     $insertPlanification = $conn->prepare("
                         INSERT INTO planification
                         (
+                            utilisateur_id,
                             titre,
                             description,
                             date_debut,
@@ -102,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
                         )
                         VALUES
                         (
+                            :utilisateur_id,
                             :titre,
                             :description,
                             :date_debut,
@@ -111,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
                     ");
                 
                     $insertPlanification->execute([
+                        'utilisateur_id' => $demande['utilisateur_id'],
                         'titre' => $demande['type_pret'],
                         'description' => $demande['motif'],
                         'date_debut' => $dateDebut,
@@ -125,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
             "Demande #$id => $statut"
         );
     }
-}
 
 try {
     $sql = "SELECT 

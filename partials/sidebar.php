@@ -1,3 +1,11 @@
+<?php
+$sqlNotif = "SELECT COUNT(*) as total
+             FROM demande_pret
+             WHERE statut = 'en attente'";
+
+$stmtNotif = $conn->query($sqlNotif);
+$nbDemandes = $stmtNotif->fetch(PDO::FETCH_ASSOC)['total'];
+?>
 <aside class="sidebar">
 
     <!-- Logo -->
@@ -45,6 +53,12 @@
             <a href="demande.php" class="nav-link <?= ($current_page == 'demande.php') ? 'active' : '' ?>">
                 <i class="fas fa-hand-holding-usd"></i>
                 <span>Listes des demandes de prêt</span>
+
+                <?php if($nbDemandes > 0): ?>
+                    <span class="badge bg-danger ms-2">
+                        <?= $nbDemandes ?>
+                    </span>
+                <?php endif; ?>
             </a>
         </li>
         <li class="nav-item">
