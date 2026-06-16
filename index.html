@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banque Horizon - Actualités</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#f5f8fc;
+            color:#333;
+        }
+
+        /* HEADER */
+        header{
+            background:#fff;
+            box-shadow:0 2px 10px rgba(0,0,0,0.08);
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+
+        .navbar{
+            max-width:1200px;
+            margin:auto;
+            padding:18px 20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            font-size:26px;
+            font-weight:700;
+            color:#0a3d91;
+        }
+
+        .menu{
+            display:flex;
+            gap:30px;
+        }
+
+        .menu a{
+            text-decoration:none;
+            color:#333;
+            font-weight:500;
+            transition:.3s;
+        }
+
+        .menu a:hover{
+            color:#0a3d91;
+        }
+
+        /* HERO */
+        .hero{
+            min-height:85vh;
+            background:
+            linear-gradient(rgba(10,61,145,.75),
+            rgba(10,61,145,.75)),
+            url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            color:white;
+            padding:20px;
+        }
+
+        .hero-content{
+            max-width:800px;
+        }
+
+        .hero h1{
+            font-size:3.5rem;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:1.2rem;
+            margin-bottom:30px;
+            line-height:1.8;
+        }
+
+        .btn{
+            display:inline-block;
+            background:white;
+            color:#0a3d91;
+            padding:14px 35px;
+            border-radius:50px;
+            text-decoration:none;
+            font-weight:600;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            transform:translateY(-3px);
+            box-shadow:0 10px 25px rgba(0,0,0,.2);
+        }
+
+        /* SECTION */
+        section{
+            padding:80px 20px;
+        }
+
+        .container{
+            max-width:1200px;
+            margin:auto;
+        }
+
+        .section-title{
+            text-align:center;
+            margin-bottom:50px;
+        }
+
+        .section-title h2{
+            font-size:2.5rem;
+            color:#0a3d91;
+            margin-bottom:10px;
+        }
+
+        .section-title p{
+            color:#666;
+        }
+
+        /* NEWS CARDS */
+        .news-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:white;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 5px 20px rgba(0,0,0,.08);
+            transition:.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+        }
+
+        .card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .card-content{
+            padding:25px;
+        }
+
+        .date{
+            color:#0a3d91;
+            font-size:14px;
+            font-weight:600;
+        }
+
+        .card h3{
+            margin:15px 0;
+        }
+
+        .card p{
+            color:#666;
+            line-height:1.7;
+        }
+
+        .read-more{
+            margin-top:15px;
+            display:inline-block;
+            color:#0a3d91;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        /* TIMELINE */
+        .timeline{
+            background:white;
+            border-radius:20px;
+            padding:30px;
+            box-shadow:0 5px 20px rgba(0,0,0,.08);
+        }
+
+        .timeline-item{
+            padding:20px 0;
+            border-bottom:1px solid #eee;
+        }
+
+        .timeline-item:last-child{
+            border-bottom:none;
+        }
+
+        .timeline-date{
+            color:#0a3d91;
+            font-weight:600;
+            margin-bottom:8px;
+        }
+
+        /* NEWSLETTER */
+        .newsletter{
+            background:linear-gradient(135deg,#0a3d91,#1d65d6);
+            color:white;
+            border-radius:25px;
+            text-align:center;
+            padding:60px 20px;
+        }
+
+        .newsletter h2{
+            margin-bottom:15px;
+        }
+
+        .newsletter p{
+            margin-bottom:25px;
+        }
+
+        .newsletter-form{
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .newsletter-form input{
+            width:350px;
+            max-width:100%;
+            padding:15px;
+            border:none;
+            border-radius:50px;
+        }
+
+        .newsletter-form button{
+            padding:15px 30px;
+            border:none;
+            border-radius:50px;
+            background:white;
+            color:#0a3d91;
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        /* FOOTER */
+        footer{
+            background:#081f4d;
+            color:white;
+            text-align:center;
+            padding:30px;
+            margin-top:80px;
+        }
+
+        @media(max-width:768px){
+
+            .navbar{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .menu{
+                gap:15px;
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+
+            .hero h1{
+                font-size:2.2rem;
+            }
+
+            .hero p{
+                font-size:1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="logo">BANQUE HORIZON</div>
+
+        <nav class="menu">
+            <a href="#">Accueil</a>
+            <a href="#">Actualités</a>
+            <a href="#">Événements</a>
+            <a href="#">Presse</a>
+            <a href="#">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Les Actualités de Votre Banque</h1>
+        <p>
+            Suivez les dernières annonces, événements,
+            innovations et engagements de Banque Horizon
+            pour accompagner votre réussite.
+        </p>
+
+        <a href="index.php" class="btn">Cliquer pour se connecter </a>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="section-title">
+            <h2>À la Une</h2>
+            <p>Nos dernières informations importantes</p>
+        </div>
+
+        <div class="news-grid">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80">
+                <div class="card-content">
+                    <div class="date">12 Juin 2026</div>
+                    <h3>Nouvelle Agence à Antananarivo</h3>
+                    <p>
+                        Une nouvelle agence ouvre ses portes afin
+                        d'améliorer la proximité avec nos clients.
+                    </p>
+                    <a href="#" class="read-more">Lire plus →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=900&q=80">
+                <div class="card-content">
+                    <div class="date">09 Juin 2026</div>
+                    <h3>Application Mobile Modernisée</h3>
+                    <p>
+                        Une nouvelle expérience numérique plus rapide
+                        et plus sécurisée pour tous nos clients.
+                    </p>
+                    <a href="#" class="read-more">Lire plus →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80">
+                <div class="card-content">
+                    <div class="date">05 Juin 2026</div>
+                    <h3>Soutien aux Entrepreneurs</h3>
+                    <p>
+                        De nouvelles solutions d'accompagnement
+                        pour les PME et jeunes entrepreneurs.
+                    </p>
+                    <a href="#" class="read-more">Lire plus →</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Dernières Publications</h2>
+            <p>Restez informé des nouveautés</p>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-date">10 Juin 2026</div>
+                <p>Lancement d'un programme d'éducation financière.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">08 Juin 2026</div>
+                <p>Participation au salon de l'innovation bancaire.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">04 Juin 2026</div>
+                <p>Partenariat avec plusieurs entreprises locales.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">01 Juin 2026</div>
+                <p>Campagne de sensibilisation à la sécurité numérique.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="newsletter">
+
+            <h2>Recevez Nos Actualités</h2>
+
+            <p>
+                Inscrivez-vous pour recevoir les dernières
+                informations directement par e-mail.
+            </p>
+
+            <form class="newsletter-form">
+                <input type="email" placeholder="Votre adresse email">
+                <button type="submit">S'abonner</button>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Banque Horizon - Tous droits réservés</p>
+</footer>
+
+</body>
+</html>

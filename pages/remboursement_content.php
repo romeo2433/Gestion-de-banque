@@ -30,7 +30,7 @@ $remboursements = $remboursements ?? [];
 <table class="table table-hover">
 <thead>
 <tr>
-    <th>ID</th>
+    
     <th>Client</th>
     <th>Montant</th>
     <th>Date</th>
@@ -55,10 +55,8 @@ $badge = match($remb['statut']) {
 ?>
 
 <tr>
-    <td>#<?= $remb['id'] ?></td>
-
     <td>
-        <strong><?= htmlspecialchars($remb['nom'] . ' ' . $remb['prenom']) ?></strong>
+        <strong><?= htmlspecialchars($remb['username']) ?></strong>
     </td>
 
     <td class="montant">

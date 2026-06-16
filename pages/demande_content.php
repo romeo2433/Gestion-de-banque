@@ -45,7 +45,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    
                     <th>Client</th>
                     <th>Montant</th>
                     <th>Statut</th>
@@ -57,7 +57,7 @@
             <tbody>
                 <?php foreach ($demandes as $d): ?>
                 <tr>
-                    <td><?php echo $d['id']; ?></td>
+                    
                     <td> <?php echo $d['client_nom']; ?></td>
                     <td><?php echo number_format($d['montant']); ?> Ar</td>
                     <td>
@@ -88,25 +88,64 @@
                             <?php if ($d['statut'] == 'en attente'): ?>
 
                                 <form method="POST" style="display:inline;">
+    <input type="hidden" name="id" value="<?= $d['id']; ?>">
+    <input type="hidden" name="statut" value="approuvé">
 
-                                    <input type="hidden" name="id" value="<?= $d['id']; ?>">
+    <button type="submit" class="btn btn-success btn-sm">
+        ✔ Valider
+    </button>
+</form>
 
-                                    <button type="submit"
-                                            name="statut"
-                                            value="approuvé"
-                                            class="btn btn-success btn-sm">
-                                        ✔ Valider
-                                    </button>
+<button type="button"
+        class="btn btn-secondary btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#refusModal<?= $d['id']; ?>">
+    ✖ Refuser
+</button><div class="modal fade" id="refusModal<?= $d['id']; ?>" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-                                    <button type="submit"
-                                            name="statut"
-                                            value="refusé"
-                                            class="btn btn-secondary btn-sm">
-                                        ✖ Refuser
-                                    </button>
+            <form method="POST">
 
-                                </form>
+                <div class="modal-header">
+                    <h5 class="modal-title">Motif du refus</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
+                <div class="modal-body">
+
+                    <input type="hidden" name="id" value="<?= $d['id']; ?>">
+                    <input type="hidden" name="statut" value="refusé">
+
+                    <label class="form-label">Motif du refus :</label>
+
+                    <textarea name="motif_refus"
+                              class="form-control"
+                              rows="4"
+                              required></textarea>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-danger">
+                        Confirmer
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
                                 <a href="editdemande.php?id=<?= $d['id']; ?>"
                                 class="btn btn-warning btn-sm">
                                 ✏️

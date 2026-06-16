@@ -2,6 +2,20 @@
 session_start();
 require_once 'config.php';
 
+$user_id = $_SESSION['user_id'];
+
+$stmt = $conn->prepare("
+    SELECT username, photo
+    FROM users
+    WHERE id = :id
+");
+
+$stmt->execute([
+    'id' => $user_id
+]);
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 // Vérification que l'utilisateur est bien un client
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'client') {
     header("Location: login.php");
@@ -179,16 +193,29 @@ try {
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+        <div class="text-center mb-3">
+    
+         
+    <a class="navbar-brand" href="#">
                 <i class="fas fa-university me-2"></i>BANQUE NATIONAL 
             </a>
+</div>
+       
+           
             <div class="d-flex align-items-center">
                 <span class="navbar-text">
-                    <i class="fas fa-user-circle me-2"></i>
-                    <?php echo htmlspecialchars($client['prenom'] . ' ' . $client['nom']); ?>
+                    <i class="fas fa-user-circle me-2">
+                        <?php echo htmlspecialchars($client['prenom'] . ' ' . $client['nom']); ?>
+                    </i>
                 </span>
+                <img src="client/uploads/<?= htmlspecialchars($user['photo'] ?? 'default.png') ?>"
+         alt="Photo de profil"
+         width="50"
+         height="50"
+         style="border-radius:50%; object-fit:cover; border:3px solid #0d6efd;">
+                
                 <a href="logout.php" class="btn-logout" onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?')">
-                    <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
+                    <i class="fas fa-sign-out-alt me-2">Déco</i>
                 </a>
             </div>
         </div>
@@ -209,6 +236,10 @@ try {
             <h1>Bonjour, <?php echo htmlspecialchars($client['prenom']); ?> !</h1>
             <p><i class="fas fa-envelope me-2"></i><?php echo htmlspecialchars($client['email']); ?></p>
         </div>
+        <a href="client/profil.php" class="fas fa-sign-out-alt me-2">
+                👤 Mon profil</i>
+                </a>
+        
 
         <!-- Statistiques -->
         <div class="row mb-4">
@@ -280,6 +311,7 @@ try {
                                     <th>Taux</th>
                                     <th>Statut</th>
                                     <th>Date demande</th>
+                                    <th>Message admin</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -304,18 +336,27 @@ try {
                                     </td>
                                     <td><?php echo date('d/m/Y', strtotime($pret['date_demande'])); ?></td>
                                     <td>
-        <a href="client/detaildemande.php?id=<?= $pret['id'] ?>"
-           class="btn btn-info btn-sm">
-           👁️
-        </a>
+                                        <?php if ($pret['statut'] == 'refusé' && !empty($pret['motif_refus'])): ?>
+                                            <span class="badge bg-danger">
+                                                <?= htmlspecialchars($pret['motif_refus']) ?>
+                                            </span>
+                                        <?php else: ?>
+                                            <span class="text-muted">-</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="client/detaildemande.php?id=<?= $pret['id'] ?>"
+                                        class="btn btn-info btn-sm">
+                                        👁️
+                                        </a>
 
-        <?php if ($pret['statut'] == 'en attente'): ?>
-        <a href="client/datedemande.php?id=<?= $pret['id'] ?>"
-           class="btn btn-warning btn-sm">
-           ✏️
-        </a>
-        <?php endif; ?>
-    </td>
+                                        <?php if ($pret['statut'] == 'en attente'): ?>
+                                        <a href="client/datedemande.php?id=<?= $pret['id'] ?>"
+                                        class="btn btn-warning btn-sm">
+                                        ✏️
+                                        </a>
+                                        <?php endif; ?>
+                                    </td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -368,11 +409,11 @@ try {
                                         </span>
                                     </td>
                                     <td>
-    <a href="client/detailremboursement.php?id=<?= $remb['id'] ?>"
-       class="btn btn-info btn-sm">
-       👁️ Détails
-    </a>
-</td>
+                                        <a href="client/detailremboursement.php?id=<?= $remb['id'] ?>"
+                                        class="btn btn-info btn-sm">
+                                        👁️ Détails
+                                        </a>
+                                    </td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
